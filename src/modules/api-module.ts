@@ -8,12 +8,15 @@ export default class ApiModule {
     this.vrc = vrc
   }
 
+  protected get userId() {
+    return this.vrc.userId
+  }
+
   protected async get(url: string, params: object = {}) {
     let p = Object.assign({
       apiKey: this.vrc.apiKey,
       authToken: this.vrc.token,
     }, params)
-    console.log(p)
     return await this.vrc.api.get(url, {
       params: p,
     })

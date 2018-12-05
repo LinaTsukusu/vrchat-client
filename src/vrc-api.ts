@@ -5,6 +5,7 @@ import Favorite from './modules/favorite'
 import World from './modules/world'
 import Moderation from './modules/moderation'
 import Notification from './modules/notification'
+import {UserId} from './types/common'
 const cookie = require('cookie')
 
 
@@ -12,6 +13,7 @@ export default class VrcApi {
   private readonly vrc: AxiosInstance
   private _apiKey: string
   private _token: string
+  private _userId: UserId
   public readonly user: User
   public readonly avatar: Avatar
   public readonly favorite: Favorite
@@ -47,6 +49,7 @@ export default class VrcApi {
       auth: {username: username, password: password}
     })
     this._token = cookie.parse(userRes.headers['set-cookie'][1]).auth
+    this._userId = userRes.data.id
   }
 
   get api() {
@@ -59,5 +62,9 @@ export default class VrcApi {
 
   get token() {
     return this._token
+  }
+
+  get userId() {
+    return this._userId
   }
 }
