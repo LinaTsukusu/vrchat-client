@@ -1,6 +1,36 @@
-import {AvatarId, DateTimeString, DeveloperType, ListRequest, Status, Tags, UserId, WorldId} from './common'
+import {AvatarId, DateTimeString, InstanceId, ListRequest, UserId, WorldId} from './common'
+import {SendNotificationResponse} from './notification'
 
-export type UserInfoResponse = {
+
+export type Status = 'active' | 'join me' | 'busy' | 'offline'
+export type DeveloperType = 'none' | 'trusted' | 'internal' | 'moderator'
+
+export type Tags =
+  'admin_scripting_access' |
+  'system_scripting_access' |
+  'system_avatar_access' |
+  'system_world_access' |
+  'admin_avatar_access' |
+  'admin_world_access' |
+  'admin_avatar_restricted' |
+  'admin_world_restricted' |
+  'admin_moderator' |
+  'system_feedback_access' |
+  'system_trust_intermediate' |
+  'system_legend' |
+  'system_probable_troll' |
+  'system_troll' |
+  'admin_lock_level' |
+  'admin_lock_tags' |
+  'admin_official_thumbnail' |
+  'system_trust_basic' |
+  'system_trust_known' |
+  'system_trust_trusted' |
+  'system_trust_veteran' |
+  'system_trust_legend'
+
+
+export interface UserInfoResponse {
   id: UserId
   username: string
   displayName: string
@@ -31,7 +61,7 @@ export type UserInfoResponse = {
   friendKey: string
 }
 
-export type UpdateUserRequest = {
+export interface UpdateUserOptions {
   email: string
   birthday: string
   acceptedTOSVersion: string
@@ -41,9 +71,16 @@ export type UpdateUserRequest = {
   statusDescription: string
 }
 
-export type FriendsRequest = ListRequest & {offline: boolean}
+export interface FriendsOptions extends ListRequest {
+  offline: boolean
+}
 
-export type FriendsResponse = {
+export interface UserSearchOptions extends ListRequest {
+  search: string
+  developerType: DeveloperType
+}
+
+export interface FriendsResponse {
   id: UserId
   username: string
   displayName: string
@@ -52,4 +89,42 @@ export type FriendsResponse = {
   tags: Tags[]
   developerType: DeveloperType
   location: WorldId
+}
+
+export interface FriendStatusResponse {
+  isFriend: boolean
+  outgoingRequest: boolean
+  incomingRequest: boolean
+}
+
+export interface FriendRequestResponse extends SendNotificationResponse {
+  type: 'friendrequest'
+}
+
+export interface UserResponse {
+  id: UserId
+  username: string
+  displayName: string
+  currentAvatarImageUrl: string
+  currentAvatarThumbnailImageUrl: string
+  status: Status
+  statusDescription: string
+  tags: Tags[]
+  developerType: DeveloperType
+  last_login: DateTimeString
+  isFriend: boolean
+  friendKey: string
+  location: WorldId & InstanceId
+  worldId: WorldId
+  instanceId: InstanceId
+}
+
+export interface UserSearchResponse {
+  id: UserId
+  username: string
+  displayName: string
+  currentAvatarImageUrl: string
+  currentAvatarThumbnailImageUrl: string
+  tags: Tags[]
+  developerType: DeveloperType
 }
