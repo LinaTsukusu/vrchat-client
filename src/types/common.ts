@@ -8,7 +8,7 @@ export type NotificationId = string
 export type DateTimeString = string
 
 
-export interface ListRequest {
+export interface SearchRequest {
   n: number
   offset: number
 }

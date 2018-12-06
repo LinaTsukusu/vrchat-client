@@ -1,4 +1,4 @@
-import {DateTimeString, InstanceId, UserId, WorldId} from './common'
+import {DateTimeString, InstanceId, SearchRequest, UserId, WorldId} from './common'
 
 export type ReleaseStatus = 'public' | 'private' | 'all' | 'hidden'
 
@@ -18,30 +18,55 @@ export interface Instance {
   1: number
 }
 
-export interface WorldResponse {
+
+export interface WorldInfo {
   id: WorldId
   name: string
-  description: string
-  featured: boolean
-  authorId: UserId
   authorName: string
   totalLikes: number
   totalVisits: number
   capacity: number
-  tags: string[]
-  releaseStatus: ReleaseStatus
   imageUrl: string
   thumbnailImageURL: string
+  isSecure: boolean
+  releaseStatus: ReleaseStatus
+  organization: string
+  occupants: number
+}
+
+export interface WorldDetail extends WorldInfo {
+  description: string
+  featured: boolean
+  authorId: UserId
+  tags: string[]
   assetUrl: string
   pluginUrl: string
   unityPackageUrl: string
   namespace: string
   unityPackageUpdated: boolean
   unityPackages: UnityPackage
-  isSecure: boolean
   isLockdown: boolean
   version: number
-  organization: string
   instances: Instance[]
-  occupants: number
+}
+
+export type SortOption = 'popularity' | 'created' | 'updated' | 'order' | '_created_at' | '_updated_at'
+export type OrderOption = 'ascending' | 'descending'
+
+export interface WorldSearchRequest extends SearchRequest {
+  featured: boolean
+  sort: SortOption
+  user: 'me' | string
+  userId: 'me' | UserId
+  order: OrderOption
+  search: string
+  tag
+  notag
+  releaseStatus
+  maxUnityVersion
+  minUnityVersion
+  maxAssetVersion
+  minAssetVersion
+  platform
+
 }
