@@ -14,12 +14,12 @@ let api = await vrc.login(username, password)
 ### User API
 - User info
 ```javascript
-api.user.getInfo()
+api.user.getUserInfo()
 ```
 
 - Update user info
 ```javascript
-api.user.updateInfo({
+api.user.updateUserInfo({
   email: "example@example.com",
   birthday: "",
   status: "active",
@@ -43,7 +43,7 @@ api.user.getFriendStatus('user id')
 
 - Send friend request
 ```javascript
-api.user.sendFrinedRequest('user id')
+api.user.sendFriendRequest('user id')
 ```
 
 - Unfriend
@@ -68,7 +68,15 @@ api.user.getByName('user name')
 
 - Get user list
 ```javascript
-api.user.search({
+// All Users
+api.user.searchAll({
+  search: '',
+  n: 1,
+  offset: 1,
+  developerType: 'none'
+})
+// Active User Only
+api.user.searchActive({
   search: '',
   n: 1,
   offset: 1,
@@ -88,7 +96,7 @@ api.favorite.add.user('user id')
 
 - Get favorite
 ```javascript
-api.favorite.get('favorite id')
+api.favorite.getInfo('favorite id')
 ```
 
 - List Favorite
@@ -98,7 +106,7 @@ api.favorite.list('type')
 
 - Delete  favorite
 ```javascript
-api.favortite.delete('favorite id')
+api.favortite.deleteFavorite('favorite id')
 ```
 
 ### World API
