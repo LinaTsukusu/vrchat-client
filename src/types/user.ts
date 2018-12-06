@@ -1,4 +1,4 @@
-import {AvatarId, DateTimeString, InstanceId, ListRequest, UserId, WorldId} from './common'
+import {AvatarId, DateTimeString, InstanceId, SearchRequest, UserId, WorldId} from './common'
 import {SendNotificationResponse} from './notification'
 
 
@@ -71,11 +71,11 @@ export interface UpdateUserOptions {
   statusDescription: string
 }
 
-export interface FriendsOptions extends ListRequest {
+export interface FriendsOptions extends SearchRequest {
   offline: boolean
 }
 
-export interface UserSearchOptions extends ListRequest {
+export interface UserSearchOptions extends SearchRequest {
   search: string
   developerType: DeveloperType
 }
