@@ -1,8 +1,8 @@
-import {AvatarId, UnityPackage, UserId} from './common'
+import {AvatarId, OrderOption, SearchRequest, SortOption, UnityPackage, UserId} from './common'
 
 
 export type ReleaseStatus = 'public' | 'private' | 'hidden'
-
+export type UserOptions = 'me' | 'friends'
 
 export interface AvatarInfo {
   id: AvatarId
@@ -21,3 +21,19 @@ export interface AvatarInfo {
   unityPackageUpdated: boolean
   unityPackageURL: string
 }
+
+export interface AvatarSearchRequest extends SearchRequest {
+  user: UserOptions
+  featured: boolean
+  tag: string
+  search: string
+  order: OrderOption
+  releaseStatus: ReleaseStatus
+  sort: SortOption
+  maxUnityVersion: string
+  minUnityVersion: string
+  maxAssetVersion: string
+  minAssetVersion: string
+  platform: string
+}
+

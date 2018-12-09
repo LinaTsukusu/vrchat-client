@@ -1,4 +1,4 @@
-import {InstanceId, SearchRequest, UnityPackage, UserId, WorldId} from './common'
+import {InstanceId, OrderOption, SearchRequest, SortOption, UnityPackage, UserId, WorldId} from './common'
 
 export type ReleaseStatus = 'public' | 'private' | 'all' | 'hidden'
 
@@ -38,9 +38,6 @@ export interface WorldDetail extends WorldInfo {
   version: number
   instances: Instance[]
 }
-
-export type SortOption = 'popularity' | 'created' | 'updated' | 'order' | '_created_at' | '_updated_at'
-export type OrderOption = 'ascending' | 'descending'
 
 export interface WorldSearchRequest extends SearchRequest {
   featured: boolean
