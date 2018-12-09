@@ -1,21 +1,51 @@
 import ApiModule from './api-module'
-import {WorldId} from '../types/common'
-import {WorldDetail, WorldInfo} from '../types/world'
+import {InstanceId, StatusResponse, WorldId} from '../types/common'
+import {InstanceInfo, MetadataResponse, WorldDetail, WorldInfo, WorldSearchRequest} from '../types/world'
 
 
 export default class World extends ApiModule {
   async getById(worldId: WorldId): Promise<WorldDetail> {
-    const result = await this.get(`worlds/${worldId}`)
+    const result = await this.getReq(`worlds/${worldId}`)
     return result.data
   }
 
   get list() {
     return {
-      async all(options: Partial<{}> = {}): Promise<WorldInfo[]> {
-        const result = await this.get('worlds', options)
+      async all(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+        const result = await this.getReq('worlds', options)
         return result.data
-      }
+      },
+
+      async active(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+        const result = await this.getReq('worlds/active', options)
+        return result.data
+      },
+
+      async recent(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+        const result = await this.getReq('worlds/recent', options)
+        return result.data
+      },
+
+      async favorites(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+        const result = await this.getReq('worlds/favorites', options)
+        return result.data
+      },
     }
+  }
+
+  async delete(worldId: WorldId): Promise<StatusResponse> {
+    const result = await this.deleteReq(`worlds/${worldId}`)
+    return result.data
+  }
+
+  async getMetadata(worldId: WorldId): Promise<MetadataResponse> {
+    const result = await this.getReq(`worlds/${worldId}/metadata`)
+    return result.data
+  }
+
+  async getInstanceWithTags(worldId: WorldId, instanceId: InstanceId): Promise<InstanceInfo> {
+    const result = await this.getReq(`worlds/${worldId}/${instanceId}`)
+    return result.data
   }
 
 }

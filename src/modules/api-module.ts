@@ -12,7 +12,7 @@ export default class ApiModule {
     return this.vrc.userId
   }
 
-  protected async get(url: string, params: object = {}) {
+  protected async getReq(url: string, params: object = {}) {
     let p = Object.assign({
       apiKey: this.vrc.apiKey,
       authToken: this.vrc.token,
@@ -22,7 +22,7 @@ export default class ApiModule {
     })
   }
 
-  protected async delete(url: string) {
+  protected async deleteReq(url: string) {
     return await this.vrc.api.delete(url, {
       params: {
         apiKey: this.vrc.apiKey,
@@ -40,11 +40,11 @@ export default class ApiModule {
     })
   }
 
-  protected async post(url: string, body: object = null) {
+  protected async postReq(url: string, body: object = null) {
     return await this.request('post', url, body)
   }
 
-  protected async put(url: string, body: object = null) {
+  protected async putReq(url: string, body: object = null) {
     return await this.request('put', url, body)
   }
 }
