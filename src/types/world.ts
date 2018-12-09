@@ -60,13 +60,12 @@ export interface WorldSearchRequest extends SearchRequest {
   userId: 'me' | UserId
   order: OrderOption
   search: string
-  tag
-  notag
-  releaseStatus
-  maxUnityVersion
-  minUnityVersion
-  maxAssetVersion
-  minAssetVersion
-  platform
-
+  tag: string
+  notag: string
+  releaseStatus: ReleaseStatus
+  maxUnityVersion: string
+  minUnityVersion: string
+  maxAssetVersion: string
+  minAssetVersion: string
+  platform: string
 }
