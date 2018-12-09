@@ -1,17 +1,6 @@
-import {DateTimeString, InstanceId, SearchRequest, UserId, WorldId} from './common'
+import {InstanceId, SearchRequest, UnityPackage, UserId, WorldId} from './common'
 
 export type ReleaseStatus = 'public' | 'private' | 'all' | 'hidden'
-
-export interface UnityPackage {
-  id: string
-  assetUrl: string
-  pluginUrl: string
-  unityVersion: string
-  unitySortNumber: number
-  assetVersion: number
-  platform: string
-  created_at: DateTimeString
-}
 
 export interface Instance {
   0: InstanceId

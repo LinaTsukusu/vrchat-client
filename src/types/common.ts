@@ -22,3 +22,14 @@ export interface StatusResponse {
   success?: StatusMessage
   error?: StatusMessage
 }
+
+export interface UnityPackage {
+  id: string
+  assetUrl: string
+  pluginUrl: string
+  unityVersion: string
+  unitySortNumber: number
+  assetVersion: number
+  platform: string
+  created_at: DateTimeString
+}
