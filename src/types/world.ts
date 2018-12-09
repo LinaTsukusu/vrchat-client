@@ -69,3 +69,18 @@ export interface WorldSearchRequest extends SearchRequest {
   minAssetVersion: string
   platform: string
 }
+
+export interface MetadataResponse {
+  id: WorldId
+  metadata: object[]
+}
+
+export interface InstanceInfo {
+  id: InstanceId
+  name: string
+  private: object[]
+  friends: object[]
+  users: object[]
+  hidden: string
+  nonce: string
+}

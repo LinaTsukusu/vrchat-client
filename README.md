@@ -106,7 +106,7 @@ api.favorite.list('type')
 
 - Delete  favorite
 ```javascript
-api.favortite.deleteFavorite('favorite id')
+api.favortite.delete('favorite id')
 ```
 
 ### World API
@@ -129,7 +129,7 @@ api.world.delete('world id')
 
 - Get world meta data
 ```javascript
-api.world.getMetaData('world id')
+api.world.getMetadata('world id')
 ```
 
 - Get instance with tags
