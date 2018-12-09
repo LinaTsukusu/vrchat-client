@@ -7,6 +7,8 @@ export type NotificationId = string
 
 export type DateTimeString = string
 
+export type SortOption = 'popularity' | 'created' | 'updated' | 'order' | '_created_at' | '_updated_at'
+export type OrderOption = 'ascending' | 'descending'
 
 export interface SearchRequest {
   n: number

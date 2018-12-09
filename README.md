@@ -150,7 +150,7 @@ api.avatar.choose('avatar id')
 
 - List avatar
 ```javascript
-api.avatar.list({
+api.avatar.search({
   options: any,
 })
 ```
