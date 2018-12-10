@@ -41,9 +41,6 @@ export default class VrcApi {
 
   async login(username: string, password: string) {
     this._apiKey = (await this.vrc.get('/config')).data.apiKey
-
-    console.log(this._apiKey)
-
     const userRes = await this.vrc.get("/auth/user", {
       params: {apiKey: this._apiKey},
       auth: {username: username, password: password}
