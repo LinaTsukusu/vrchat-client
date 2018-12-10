@@ -4,6 +4,7 @@ export type WorldId = string
 export type FavoriteId = string
 export type InstanceId = string
 export type NotificationId = string
+export type ModerationId = string
 
 export type DateTimeString = string
 
