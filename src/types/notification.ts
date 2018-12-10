@@ -1,9 +1,11 @@
-import {NotificationId, UserId} from './common'
+import {DateTimeString, NotificationId, UserId, WorldId} from './common'
 
 export type NotificationType = 'all' | 'message' | 'friendrequest' | 'invite' | 'votetokick' | 'halp' | 'hidden'
 
 export interface Details {
-  
+  invite: WorldId,
+  votetokick: 'userToKickId' | 'initiatorUserId'
+  halp: 'halpId' | 'worldId'
 }
 
 export interface NotificationInfo {
@@ -12,13 +14,23 @@ export interface NotificationInfo {
   senderUserId: UserId
   receiverUserId: UserId
   message: string
-  details: object
+  details: Details
   jobName: string
   jobColor: string
 }
 
-export interface SendNotificationRequest {
-  type: NotificationType
+export interface SendNotificationOptions {
   message: string
   details: Details
+}
+
+export interface NotificationDetail {
+  id: NotificationId
+  type: NotificationType
+  senderUserId: UserId
+  receiverUserId: UserId
+  message: string
+  details: Details
+  seen: boolean
+  created_at: DateTimeString
 }

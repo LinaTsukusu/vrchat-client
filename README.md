@@ -69,14 +69,14 @@ api.user.getByName('user name')
 - Get user list
 ```javascript
 // All Users
-api.user.searchAll({
+api.user.search.all({
   search: '',
   n: 1,
   offset: 1,
   developerType: 'none'
 })
 // Active User Only
-api.user.searchActive({
+api.user.search.active({
   search: '',
   n: 1,
   offset: 1,
