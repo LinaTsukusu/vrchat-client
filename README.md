@@ -185,12 +185,12 @@ api.moderation.clear('user id')
 
 - Get against
 ```javascript
-api.moderation.getAgainst()
+api.moderation.getAgainstSelf()
 ```
 
 - Get player's
 ```javascript
-api.moderation.getPlayer()
+api.moderation.getSentlist()
 ```
 
 ### Notification API

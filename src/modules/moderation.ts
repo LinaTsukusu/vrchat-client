@@ -23,6 +23,14 @@ export default class Moderation extends ApiModule {
     return result.data
   }
 
+  async mute(userId: UserId): Promise<ModerationInfo> {
+    return await this.sendPlayer(userId, 'mute')
+  }
+
+  async unmute(userId: UserId): Promise<ModerationInfo> {
+    return await this.sendPlayer(userId, 'unmute')
+  }
+
   async delete(userId: UserId, moderationId: ModerationId): Promise<StatusResponse> {
     const result = await this.deleteReq(`user/${userId}/moderations/${moderationId}`)
     return result.data
@@ -30,6 +38,16 @@ export default class Moderation extends ApiModule {
 
   async clear(userId: UserId): Promise<StatusResponse> {
     const result = await this.deleteReq(`user/${userId}/moderations`)
+    return result.data
+  }
+
+  async getAgainstSelf(): Promise<ModerationInfo[]> {
+    const result = await this.getReq(`auth/user/playermoderated`)
+    return result.data
+  }
+
+  async getSentlist(): Promise<ModerationInfo[]> {
+    const result = await this.getReq(`auth/user/playermoderations`)
     return result.data
   }
 
