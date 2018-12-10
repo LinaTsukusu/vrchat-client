@@ -5,7 +5,8 @@ export type NotificationType = 'all' | 'message' | 'friendrequest' | 'invite' | 
 export interface Details {
   invite: WorldId,
   votetokick: 'userToKickId' | 'initiatorUserId'
-  halp: 'halpId' | 'worldId'
+  // halp: 'halpId' | 'worldId'
+  halp: string
 }
 
 export interface NotificationInfo {
@@ -21,7 +22,7 @@ export interface NotificationInfo {
 
 export interface SendNotificationOptions {
   message: string
-  details: Details
+  details: Partial<Details>
 }
 
 export interface NotificationDetail {
