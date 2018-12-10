@@ -2,7 +2,11 @@ import {NotificationId, UserId} from './common'
 
 export type NotificationType = 'all' | 'message' | 'friendrequest' | 'invite' | 'votetokick' | 'halp' | 'hidden'
 
-export interface SendNotificationResponse {
+export interface Details {
+  
+}
+
+export interface NotificationInfo {
   id: NotificationId
   type: NotificationType
   senderUserId: UserId
@@ -11,4 +15,10 @@ export interface SendNotificationResponse {
   details: object
   jobName: string
   jobColor: string
+}
+
+export interface SendNotificationRequest {
+  type: NotificationType
+  message: string
+  details: Details
 }

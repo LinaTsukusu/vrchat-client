@@ -1,5 +1,5 @@
 import {AvatarId, DateTimeString, InstanceId, SearchRequest, UserId, WorldId} from './common'
-import {SendNotificationResponse} from './notification'
+import {NotificationInfo} from './notification'
 
 
 export type Status = 'active' | 'join me' | 'busy' | 'offline'
@@ -97,7 +97,7 @@ export interface FriendStatusResponse {
   incomingRequest: boolean
 }
 
-export interface FriendRequestResponse extends SendNotificationResponse {
+export interface FriendRequestResponse extends NotificationInfo {
   type: 'friendrequest'
 }
 
