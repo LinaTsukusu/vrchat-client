@@ -30,9 +30,9 @@ export default class Notification extends ApiModule {
         const result = await this.postReq(`user/${targetUser}/notification`,{
           type: 'invite',
           message: message,
-          details: {
-            invite: worldId
-          }.toString()
+          details: JSON.stringify({
+            worldId: worldId
+          })
         })
         return result.data
       },
