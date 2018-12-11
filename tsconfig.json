@@ -3,7 +3,7 @@
     "module": "commonjs",
     "target": "es2018",
     "sourceMap": true,
-    "types": ["node"]
+    "types": ["node", "mocha", "chai"]
   },
   "exclude": [
     "node_modules"
