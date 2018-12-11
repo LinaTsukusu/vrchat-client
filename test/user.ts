@@ -30,6 +30,22 @@ describe('user api', () => {
   it('Get friend status', async () => {
     const friendId = (await api.user.getFriends({n: 1}))[0].id
     const result = await api.user.getFriendStatus(friendId)
+    expect(result.isFriend).is.true
+    expect(result.outgoingRequest).is.false
+    expect(result.incomingRequest).is.false
+  })
+
+  it('Send friend request', async () => {
+    const result = await api.user.sendFriendRequest(api.userId)
+    expect(result).to.have.keys([
+      'id', 'senderUserId', 'receiverUserId', 'type', 'jobName', 'jobColor',
+    ])
+    expect(result.type).is.eql('friendRequest')
+    // Delete test request
+    await api.notification.delete(result.id)
+  })
+
+  it('Unfriend', async () => {
 
   })
 
