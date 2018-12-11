@@ -9,7 +9,6 @@ import Moderation from '../src/modules/moderation'
 import Notification from '../src/modules/notification'
 
 
-
 describe('login', () => {
   let username, password
   before(() => {
