@@ -6,6 +6,7 @@ import World from './modules/world'
 import Moderation from './modules/moderation'
 import Notification from './modules/notification'
 import {UserId} from './types/common'
+
 const cookie = require('cookie')
 
 
@@ -21,14 +22,21 @@ export default class VrcApi {
   public readonly moderation: Moderation
   public readonly notification: Notification
 
-  constructor() {
+  constructor(type: 'release' | 'beta' | 'dev' = 'release') {
+    let url = 'https://api.vrchat.cloud/api/1'
+    if (type == 'dev') {
+      url = 'https://dev-api.vrchat.cloud/api/1/'
+    } else if (type == 'beta') {
+      url = 'https://beta-api.vrchat.cloud/api/1/'
+    }
+
     this.vrc = axios.create({
-      baseURL: "https://api.vrchat.cloud/api/1",
+      baseURL: url,
       headers: {
-        "Content-Type": "application/json",
-        "X-Requested-With": "XMLHttpRequest"
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
       },
-      responseType: "json"
+      responseType: 'json',
     })
 
     this.user = new User(this)
@@ -41,9 +49,9 @@ export default class VrcApi {
 
   async login(username: string, password: string) {
     this._apiKey = (await this.vrc.get('/config')).data.apiKey
-    const userRes = await this.vrc.get("/auth/user", {
+    const userRes = await this.vrc.get('/auth/user', {
       params: {apiKey: this._apiKey},
-      auth: {username: username, password: password}
+      auth: {username: username, password: password},
     })
     this._token = cookie.parse(userRes.headers['set-cookie'][1]).auth
     this._userId = userRes.data.id
