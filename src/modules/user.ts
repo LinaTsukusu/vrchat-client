@@ -59,12 +59,12 @@ export default class User extends ApiModule {
 
   get search() {
     return {
-      async all(options: Partial<UserSearchOptions> = {}): Promise<UserSearchResponse> {
+      all: async (options: Partial<UserSearchOptions> = {}): Promise<UserSearchResponse> => {
         const result = await this.getReq(`/users`, options)
         return result.data
       },
 
-      async active(options: Partial<UserSearchOptions> = {}): Promise<UserSearchResponse> {
+      active: async (options: Partial<UserSearchOptions> = {}): Promise<UserSearchResponse> => {
         const result = await this.getReq(`/users/active`, options)
         return result.data
       },

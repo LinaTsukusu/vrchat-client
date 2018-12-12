@@ -37,33 +37,49 @@ export default class Notification extends ApiModule {
         return result.data
       },
 
+      // TODO わからん
       halp: async (targetUser: UserId, worldId: WorldId, message=''): Promise<NotificationInfo> => {
         const result = await this.postReq(`user/${targetUser}/notification`,{
           type: 'halp',
           message: message,
-          details: {
-            halp: worldId
-          }.toString()
+          details: JSON.stringify({
+            // ?
+          })
         })
         return result.data
       },
 
+      // TODO わからん
       voteToKick: async (targetUser: UserId): Promise<NotificationInfo> => {
         const result = await this.postReq(`user/${targetUser}/notification`, {
           type: 'votetokick',
-          details: {
+          details: JSON.stringify({
             // ?
-          }.toString()
+          })
         })
         return result.data
       },
 
-      async all() {
-
+      // TODO わからん
+      all: async (targetUser: UserId): Promise<NotificationInfo> => {
+        const result = await this.postReq(`user/${targetUser}/notification`, {
+          type: 'all',
+          details: JSON.stringify({
+            // ?
+          })
+        })
+        return result.data
       },
 
-      async hidden() {
-
+      // TODO わからん
+      hidden: async (targetUser: UserId): Promise<NotificationInfo> => {
+        const result = await this.postReq(`user/${targetUser}/notification`, {
+          type: 'hidden',
+          details: JSON.stringify({
+            // ?
+          })
+        })
+        return result.data
       },
 
       /**

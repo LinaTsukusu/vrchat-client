@@ -6,17 +6,17 @@ import {AvatarId, FavoriteId, StatusResponse, UserId, WorldId} from '../types/co
 export default class Favorite extends ApiModule {
   get add() {
     return {
-      async friend(friendId: UserId): Promise<FavoriteResponse> {
+      friend: async (friendId: UserId): Promise<FavoriteResponse> => {
         const result = await this.postReq('favorites', {type: 'friend', favoriteId: friendId})
         return result.data
       },
 
-      async world(worldId: WorldId): Promise<FavoriteResponse> {
+      world: async (worldId: WorldId): Promise<FavoriteResponse> => {
         const result = await this.postReq('favorites', {type: 'world', favoriteId: worldId})
         return result.data
       },
 
-      async avatar(avatarId: AvatarId): Promise<FavoriteResponse> {
+      avatar: async (avatarId: AvatarId): Promise<FavoriteResponse> => {
         const result = await this.postReq('favorites', {type: 'avatar', favoriteId: avatarId})
         return result.data
       },
