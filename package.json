@@ -6,6 +6,7 @@
   "repository": "https://github.com/neverclear86/vrchat-client.git",
   "author": "LinaTsukusu",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev-build": "cross-env NODE_ENV=development node_modules/.bin/webpack",
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack",

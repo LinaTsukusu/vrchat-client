@@ -64,6 +64,9 @@ export default class User extends ApiModule {
         return result.data
       },
 
+      /**
+       * @deprecated 403 Error
+       */
       active: async (options: Partial<UserSearchOptions> = {}): Promise<UserSearchResponse> => {
         const result = await this.getReq(`/users/active`, options)
         return result.data
