@@ -11,22 +11,22 @@ export default class World extends ApiModule {
 
   get list() {
     return {
-      async all(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+      all: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
         const result = await this.getReq('worlds', options)
         return result.data
       },
 
-      async active(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+      active: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
         const result = await this.getReq('worlds/active', options)
         return result.data
       },
 
-      async recent(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+      recent: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
         const result = await this.getReq('worlds/recent', options)
         return result.data
       },
 
-      async favorites(options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> {
+      favorites: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
         const result = await this.getReq('worlds/favorites', options)
         return result.data
       },
