@@ -33,6 +33,9 @@ export default class World extends ApiModule {
     }
   }
 
+  /**
+   * @deprecated
+   */
   async delete(worldId: WorldId): Promise<StatusResponse> {
     const result = await this.deleteReq(`worlds/${worldId}`)
     return result.data

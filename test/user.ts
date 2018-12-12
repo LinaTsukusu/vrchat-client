@@ -1,12 +1,19 @@
 import VrcApi from '../src/vrc-api'
 import vrc from '../src/vrc'
-import { expect } from 'chai'
+import {expect} from 'chai'
 import {FriendsResponse} from '../src/types/user'
 
-describe('user api', () => {
+describe('User API', () => {
   let api: VrcApi
   before(async () => {
     api = await vrc.login(process.env.VRC_USERNAME, process.env.VRC_PASSWORD)
+  })
+
+  beforeEach(async () => {
+    try {
+      await api.user.unfriend(api.userId)
+    } catch (e) {
+    }
   })
 
   it('Get user info', async () => {
@@ -16,10 +23,14 @@ describe('user api', () => {
   })
 
   it('Update user info', async () => {
+    const prev = await api.user.getUserInfo()
     const result = await api.user.updateUserInfo({
-      statusDescription: "( ˘ω˘)ｽﾔｧ"
+      statusDescription: '( ˘ω˘)ｽﾔｧ',
     })
-    expect(result.statusDescription).is.eql("( ˘ω˘)ｽﾔｧ")
+    expect(result.statusDescription).is.eql('( ˘ω˘)ｽﾔｧ')
+    await api.user.updateUserInfo({
+      statusDescription: prev.statusDescription,
+    })
   })
 
   it('Get friends', async () => {
@@ -36,6 +47,7 @@ describe('user api', () => {
   })
 
   it('Send friend request', async () => {
+    // 自分にフレリク送れるので使う
     const result = await api.user.sendFriendRequest(api.userId)
     expect(result).to.have.keys([
       'id', 'senderUserId', 'receiverUserId', 'type', 'jobName', 'jobColor',
@@ -45,8 +57,43 @@ describe('user api', () => {
     await api.notification.delete(result.id)
   })
 
-  it('Unfriend', async () => {
-
+  it('Accept friend', async () => {
+    const req = await api.user.sendFriendRequest(api.userId)
+    const result = await api.user.acceptFriend(req.id)
+    expect(result).to.have.key('success')
   })
 
+  it('Unfriend', async () => {
+    const req = await api.user.sendFriendRequest(api.userId)
+    await api.user.acceptFriend(req.id)
+
+    const result = await api.user.unfriend(api.userId)
+    expect(result).to.have.key('success')
+    expect(result.success).to.have.keys(['status_code', 'message'])
+  })
+
+  it('Get by ID', async () => {
+    const result = await api.user.getById(api.userId)
+    expect(result.username).is.eql(process.env.VRC_USERNAME)
+    expect(result.id).is.eql(api.userId)
+  })
+
+  it('Get by name', async () => {
+    const result = await api.user.getByName(process.env.VRC_USERNAME)
+    expect(result.username).is.eql(process.env.VRC_USERNAME)
+    expect(result.id).is.eql(api.userId)
+  })
+
+  it('Search all', async () => {
+    const result = await api.user.search.all({
+      n: 1,
+      search: process.env.VRC_USERNAME
+    })
+    expect(result).to.be.lengthOf(1)
+  })
+
+  // it('Search active', async () => {
+  //   const result = await api.user.search.active()
+  //   expect(result).to.be.lengthOf(1)
+  // })
 })
