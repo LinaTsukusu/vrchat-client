@@ -1,6 +1,7 @@
 import ApiModule from './api-module'
 import {AvatarId} from '../types/common'
 import {AvatarInfo, AvatarSearchRequest} from '../types/avatar'
+import {UserInfoResponse} from '../types/user'
 
 export default class Avatar extends ApiModule {
   async getById(avatarId: AvatarId): Promise<AvatarInfo> {
@@ -8,7 +9,7 @@ export default class Avatar extends ApiModule {
     return result.data
   }
 
-  async choose(avatarId: AvatarId) {
+  async choose(avatarId: AvatarId): Promise<UserInfoResponse> {
     const result = await this.putReq(`avatars/${avatarId}/select`)
     return result.data
   }
