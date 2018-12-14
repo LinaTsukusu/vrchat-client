@@ -26,9 +26,4 @@ describe('Avatar API', () => {
     expect(result.currentAvatar).is.eql(current)
   })
 
-  it('Search avatar', async () => {
-    const result = await api.avatar.search({search: 'Lina'})
-    console.log(result)
-  })
-
 })
