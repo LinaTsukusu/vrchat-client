@@ -9,7 +9,7 @@ export default class World extends ApiModule {
     return result.data
   }
 
-  get list() {
+  get search() {
     return {
       all: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
         const result = await this.getReq('worlds', options)

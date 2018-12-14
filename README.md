@@ -75,13 +75,6 @@ api.user.search.all({
   offset: 1,
   developerType: 'none'
 })
-// Active User Only
-api.user.search.active({
-  search: '',
-  n: 1,
-  offset: 1,
-  developerType: 'none'
-})
 ```
 
 ### Favorite API
@@ -117,7 +110,7 @@ api.world.getById('world id')
 
 - List worlds
 ```javascript
-api.world.list({
+api.world.search.all({
   options: any
 })
 ```

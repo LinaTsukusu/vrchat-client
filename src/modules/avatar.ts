@@ -14,8 +14,4 @@ export default class Avatar extends ApiModule {
     return result.data
   }
 
-  async search(options: Partial<AvatarSearchRequest> = {}): Promise<AvatarInfo[]> {
-    const result = await this.getReq(`avatars`, options)
-    return result.data
-  }
 }
