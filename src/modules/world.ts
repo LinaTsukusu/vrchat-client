@@ -33,14 +33,6 @@ export default class World extends ApiModule {
     }
   }
 
-  /**
-   * @deprecated
-   */
-  async delete(worldId: WorldId): Promise<StatusResponse> {
-    const result = await this.deleteReq(`worlds/${worldId}`)
-    return result.data
-  }
-
   async getMetadata(worldId: WorldId): Promise<MetadataResponse> {
     const result = await this.getReq(`worlds/${worldId}/metadata`)
     return result.data
