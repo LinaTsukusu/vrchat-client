@@ -26,18 +26,18 @@ describe('World API', () => {
       api.world.search.recent({}),
     ])
     result.forEach(ret => {
-      // なんでや
       expect(ret).to.be.a('array')
-      expect(ret[0]).to.be.a
     })
   })
 
   it('Get metadata by ID', async () => {
     const result = await api.world.getMetadata(worldId)
-    console.log(result)
+    expect(result).to.have.keys(['id', 'metadata'])
   })
 
-  // it('Get instance with tags', async () => {
-  //   const result = await api.world.getInstanceWithTags(worldId, )
-  // })
+  it('Get instance with tags', async () => {
+    const info = await api.world.getById(worldId)
+    const result = await api.world.getInstanceWithTags(worldId, info.instances[0][0])
+    expect(result).to.have.keys(['id', 'private', 'friends', 'hidden', 'users', 'name'])
+  })
 })
