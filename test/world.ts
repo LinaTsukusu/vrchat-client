@@ -3,6 +3,7 @@ import vrc from '../src/vrc'
 import {expect} from 'chai'
 import {WorldId} from '../src/types/common'
 
+
 describe('World API', () => {
   let api: VrcApi
   let worldId: WorldId
@@ -19,22 +20,24 @@ describe('World API', () => {
 
   it('Get world list', async () => {
     const result = await Promise.all([
-      api.world.search.all(),
-      api.world.search.favorites(),
-      api.world.search.active(),
-      api.world.search.recent(),
+      api.world.search.all({}),
+      api.world.search.favorites({}),
+      api.world.search.active({}),
+      api.world.search.recent({}),
     ])
     result.forEach(ret => {
       // なんでや
-      console.log(ret.length)
+      expect(ret).to.be.a('array')
+      expect(ret[0]).to.be.a
     })
   })
 
   it('Get metadata by ID', async () => {
-
+    const result = await api.world.getMetadata(worldId)
+    console.log(result)
   })
 
-  it('Get instance with tags', async () => {
-
-  })
+  // it('Get instance with tags', async () => {
+  //   const result = await api.world.getInstanceWithTags(worldId, )
+  // })
 })
