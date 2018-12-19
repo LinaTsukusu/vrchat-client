@@ -2,7 +2,7 @@ import {InstanceId, OrderOption, SearchRequest, SortOption, UnityPackage, UserId
 
 export type ReleaseStatus = 'public' | 'private' | 'all' | 'hidden'
 
-export interface Instance {
+export interface Instances {
   0: InstanceId
   1: number
 }
@@ -36,7 +36,7 @@ export interface WorldDetail extends WorldInfo {
   unityPackages: UnityPackage
   isLockdown: boolean
   version: number
-  instances: Instance[]
+  instances: Instances[]
 }
 
 export interface WorldSearchRequest extends SearchRequest {
