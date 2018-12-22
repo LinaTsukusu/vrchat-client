@@ -15,7 +15,7 @@ export interface ModerationInfo {
   id: ModerationId
   type: PlayerModerationType
   sourceUserId: UserId
-  sourceDisplayname: string
+  sourceDisplayName: string
   targetUserId: UserId
   targetDisplayName: string
   created: DateTimeString
