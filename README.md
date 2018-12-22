@@ -189,10 +189,8 @@ api.moderation.getSentlist()
 ### Notification API
 - Send notification
 ```javascript
-api.notification.send('type', {
-  message: "",
-  details: {}
-})
+api.notification.send.friendRequest('user id')
+api.notification.send.invite('user id', 'world id', 'message')
 ```
 
 - Mark as read
