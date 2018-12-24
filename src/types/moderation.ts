@@ -1,7 +1,7 @@
 import {DateTimeString, InstanceId, ModerationId, UserId, WorldId} from './common'
 
 export type WorldModerationType = 'none' | 'warn' | 'kick' | 'ban' | 'banpubliconly'
-export type PlayerModerationType = 'mute' | 'unmute' | 'block' | 'unblock'
+export type PlayerModerationType = 'mute' | 'unmute' | 'block'
 
 export interface SendModerationResponse {
   type: WorldModerationType

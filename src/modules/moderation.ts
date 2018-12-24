@@ -12,18 +12,18 @@ export default class Moderation extends ApiModule {
   }
 
   async block(userId: UserId): Promise<ModerationInfo> {
-    // TODO playermoderationsにする
-    const result = await this.postReq('auth/user/blocks', {blocked: userId})
-    return result.data
+    // const result = await this.postReq('auth/user/blocks', {blocked: userId})
+    // return result.data
+    return await this.sendPlayer(userId, 'block')
   }
 
-  async unblock(userId: UserId): Promise<StatusResponse> {
-    // TODO unplayermoderationsにする
+  async unblock(userId: UserId) {
     const result = await this.putReq('auth/user/unblocks', {blocked: userId})
     return result.data
+    // return await this.sendPlayer(userId, 'unblock')
   }
 
-  async sendPlayer(userId: UserId, type: PlayerModerationType): Promise<ModerationInfo> {
+  private async sendPlayer(userId: UserId, type: PlayerModerationType): Promise<ModerationInfo> {
     const result = await this.postReq('auth/user/playermoderations', {type: type, moderated: userId})
     return result.data
   }
