@@ -5,7 +5,7 @@
     "types": ["node", "mocha", "chai"],
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "rootDirs": ["./src", "./test"]
   },
   "exclude": [
     "node_modules"
