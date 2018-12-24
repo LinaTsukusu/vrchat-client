@@ -3,11 +3,13 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es2018",
-    "types": ["node", "mocha", "chai"],
     "declaration": true,
     "outDir": "./dist",
-    "rootDir": "./src"
+    "baseUrl": "./src"
   },
+	"include": [
+		"src/**/*.ts"
+	],
   "exclude": [
     "node_modules"
   ]
