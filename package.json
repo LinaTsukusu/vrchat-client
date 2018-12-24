@@ -14,13 +14,15 @@
     "start": "yarn build && node dist/main.js",
     "test": "node_modules/.bin/mocha test/**/*.ts -r ts-node/register --timeout 60000"
   },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cookie": "^0.3.1"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
     "@types/node": "10.12.12",
-    "axios": "^0.18.0",
     "chai": "^4.2.0",
-    "cookie": "^0.3.1",
     "cross-env": "^5.2.0",
     "mocha": "^5.2.0",
     "ts-loader": "5.3.1",
