@@ -1,0 +1,5 @@
+test/
+src/
+tsconfig.json
+.travis.yml
+webpack.config.js

@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "ES6",
     "target": "es2018",
-    "sourceMap": true,
-    "types": ["node", "mocha", "chai"]
+    "types": ["node", "mocha", "chai"],
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
   "exclude": [
     "node_modules"
