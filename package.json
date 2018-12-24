@@ -1,6 +1,6 @@
 {
   "name": "vrchat-client",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Unofficial VRChat API Client for Node.js",
   "main": "dist/main.js",
   "repository": "https://github.com/neverclear86/vrchat-client.git",
