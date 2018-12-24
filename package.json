@@ -12,7 +12,7 @@
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack",
     "dev": "yarn dev-build && node dist/main.dev.js",
     "start": "yarn build && node dist/main.js",
-    "test": "node_modules/.bin/mocha test/**/*.ts -r ts-node/register"
+    "test": "node_modules/.bin/mocha test/**/*.ts -r ts-node/register --timeout 10000"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
