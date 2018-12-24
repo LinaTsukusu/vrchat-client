@@ -24,9 +24,9 @@ export default class VrcApi {
 
   constructor(type: 'release' | 'beta' | 'dev' = 'release') {
     let url = 'https://api.vrchat.cloud/api/1'
-    if (type == 'dev') {
+    if (type === 'dev') {
       url = 'https://dev-api.vrchat.cloud/api/1/'
-    } else if (type == 'beta') {
+    } else if (type === 'beta') {
       url = 'https://beta-api.vrchat.cloud/api/1/'
     }
 

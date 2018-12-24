@@ -23,7 +23,7 @@ describe('Favorite API', () => {
   it('Get favorite', async () => {
     const fav = await api.favorite.list('world')
     const result = await api.favorite.getInfo(fav[0].id)
-    expect(result).is.eql(fav[0])
+    expect(result).to.have.all.keys('favoriteId', 'id', 'tags', 'type')
   })
 
   it('Get favorite list', async () => {
