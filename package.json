@@ -13,7 +13,7 @@
     "dev": "yarn dev-build && node dist/main.dev.js",
     "start": "yarn build && node dist/main.js",
     "test": "node_modules/.bin/mocha test/**/*.ts -r ts-node/register --timeout 60000",
-    "prepublish": "node_modules/.bin/tsc"
+    "prepublishOnly": "node_modules/.bin/tsc"
   },
   "dependencies": {
     "axios": "^0.18.0",
