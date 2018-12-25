@@ -6,12 +6,19 @@
 
 ## Usage
 ### Getting started
-```javascript
+```bash
+npm i vrchat-client
+# OR
+yarn add vrchat-client
+```
+
+```typescript
 import vrc from 'vrchat-client'
+// or
+const vrc = require('vrchat-client')
 
 // all methods return Promise
 let api = await vrc.login(username, password)
-
 ```
 
 ### User API
