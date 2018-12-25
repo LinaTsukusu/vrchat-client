@@ -11,9 +11,8 @@ const cookie = require('cookie')
 
 
 export default class VrcApi {
-  private readonly vrc: AxiosInstance
-  private _apiKey: string
-  private _token: string
+  private readonly url: string
+  private vrc: AxiosInstance
   private _userId: UserId
   public readonly user: User
   public readonly avatar: Avatar
@@ -23,15 +22,15 @@ export default class VrcApi {
   public readonly notification: Notification
 
   constructor(type: 'release' | 'beta' | 'dev' = 'release') {
-    let url = 'https://api.vrchat.cloud/api/1'
+    this.url = 'https://api.vrchat.cloud/api/1'
     if (type === 'dev') {
-      url = 'https://dev-api.vrchat.cloud/api/1/'
+      this.url = 'https://dev-api.vrchat.cloud/api/1/'
     } else if (type === 'beta') {
-      url = 'https://beta-api.vrchat.cloud/api/1/'
+      this.url = 'https://beta-api.vrchat.cloud/api/1/'
     }
 
     this.vrc = axios.create({
-      baseURL: url,
+      baseURL: this.url,
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
@@ -48,25 +47,26 @@ export default class VrcApi {
   }
 
   async login(username: string, password: string) {
-    this._apiKey = (await this.vrc.get('/config')).data.apiKey
-    const userRes = await this.vrc.get('/auth/user', {
-      params: {apiKey: this._apiKey},
+    const apiKey = (await axios.get(`${this.url}/config`)).data.apiKey
+    const userRes = await axios.get(`${this.url}/auth/user`, {
+      params: {apiKey: apiKey},
       auth: {username: username, password: password},
     })
-    this._token = cookie.parse(userRes.headers['set-cookie'][1]).auth
+    const token = cookie.parse(userRes.headers['set-cookie'][1]).auth
     this._userId = userRes.data.id
+    this.vrc = axios.create({
+      baseURL: this.url,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'Cookie': `auth=${token}; apiKey=${apiKey}`,
+      },
+      responseType: 'json',
+    })
   }
 
   get api() {
     return this.vrc
-  }
-
-  get apiKey() {
-    return this._apiKey
-  }
-
-  get token() {
-    return this._token
   }
 
   get userId() {

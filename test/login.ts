@@ -20,7 +20,6 @@ describe('login', () => {
     const api = await vrc.login(username, password)
     expect(api).to.be.a.instanceOf(VrcApi)
     expect(api.userId).to.be.a('string')
-    expect(api.apiKey).is.eql('JlE5Jldo5Jibnk5O5hTx6XVqsJu4WJ26')
     expect(api.user).to.be.a.instanceOf(User)
     expect(api.avatar).to.be.a.instanceOf(Avatar)
     expect(api.world).to.be.a.instanceOf(World)
