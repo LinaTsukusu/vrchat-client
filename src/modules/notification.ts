@@ -4,15 +4,14 @@ import {
   NotificationDetail,
   NotificationInfo,
   NotificationType,
-  SendNotificationOptions,
 } from '../types/notification'
 
 export default class Notification extends ApiModule {
-  private async _send(userId: UserId, type: NotificationType, options: Partial<SendNotificationOptions> = {}): Promise<NotificationInfo> {
-    const result = await this.postReq(`user/${userId}/notification`, {
+  private async sendNotification(type: NotificationType, targetUser: UserId, message: string = '', details: object = {}): Promise<NotificationInfo> {
+    const result = await this.postReq(`user/${targetUser}/notification`,{
       type: type,
-      message: options.message,
-      details: options.details,
+      message: message,
+      details: JSON.stringify(details)
     })
     return result.data
   }
@@ -20,21 +19,13 @@ export default class Notification extends ApiModule {
   get send() {
     return {
       friendRequest: async (targetUser: UserId): Promise<NotificationInfo> => {
-        const result = await this.postReq(`user/${targetUser}/notification`, {
-          type: 'friendrequest',
-        })
-        return result.data
+        return await this.sendNotification('friendrequest', targetUser)
       },
 
       invite: async (targetUser: UserId, worldId: WorldId, message=''): Promise<NotificationInfo> => {
-        const result = await this.postReq(`user/${targetUser}/notification`,{
-          type: 'invite',
-          message: message,
-          details: JSON.stringify({
-            worldId: worldId
-          })
+        return await this.sendNotification('invite', targetUser, message, {
+          worldId: worldId
         })
-        return result.data
       },
 
       /**
@@ -42,14 +33,9 @@ export default class Notification extends ApiModule {
        */
       halp: async (targetUser: UserId, worldId: WorldId, message=''): Promise<NotificationInfo> => {
         // TODO わからん
-        const result = await this.postReq(`user/${targetUser}/notification`,{
-          type: 'halp',
-          message: message,
-          details: JSON.stringify({
-            // ?
-          })
+        return await this.sendNotification('halp', targetUser, message, {
+
         })
-        return result.data
       },
 
       /**
@@ -57,13 +43,7 @@ export default class Notification extends ApiModule {
        */
       voteToKick: async (targetUser: UserId): Promise<NotificationInfo> => {
         // TODO わからん
-        const result = await this.postReq(`user/${targetUser}/notification`, {
-          type: 'votetokick',
-          details: JSON.stringify({
-            // ?
-          })
-        })
-        return result.data
+        return await this.sendNotification('votetokick', targetUser, "", {})
       },
 
       /**
@@ -71,13 +51,7 @@ export default class Notification extends ApiModule {
        */
       all: async (targetUser: UserId): Promise<NotificationInfo> => {
         // TODO わからん
-        const result = await this.postReq(`user/${targetUser}/notification`, {
-          type: 'all',
-          details: JSON.stringify({
-            // ?
-          })
-        })
-        return result.data
+        return await this.sendNotification('all', targetUser, "", {})
       },
 
       /**
@@ -85,20 +59,14 @@ export default class Notification extends ApiModule {
        */
       hidden: async (targetUser: UserId): Promise<NotificationInfo> => {
         // TODO わからん
-        const result = await this.postReq(`user/${targetUser}/notification`, {
-          type: 'hidden',
-          details: JSON.stringify({
-            // ?
-          })
-        })
-        return result.data
+        return await this.sendNotification('hidden', targetUser, "", {})
       },
 
       /**
        * @deprecated It seems that it can not be used yet.
        */
-      async message() {
-
+      async message(targetUser: UserId, message: string) {
+        return await this.sendNotification('message', targetUser, message)
       },
     }
   }
