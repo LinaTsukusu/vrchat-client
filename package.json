@@ -1,9 +1,9 @@
 {
   "name": "vrchat-client",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "Unofficial VRChat API Client for Node.js",
   "main": "dist/main.js",
-  "repository": "https://github.com/neverclear86/vrchat-client.git",
+  "repository": "https://github.com/LinaTsukusu/vrchat-client.git",
   "author": "LinaTsukusu",
   "license": "MIT",
   "private": false,
@@ -13,6 +13,7 @@
     "test": "node_modules/.bin/mocha test/**/*.ts -r ts-node/register --timeout 60000",
     "prepublishOnly": "node_modules/.bin/tsc"
   },
+  "files": ["dist", "LICENSE", "package.json", "README.md"],
   "dependencies": {
     "axios": "^0.18.0",
     "cookie": "^0.3.1"
@@ -25,7 +26,6 @@
     "cross-env": "^5.2.0",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
-    "typescript": "3.2.2",
-    "webpack-node-externals": "^1.7.2"
+    "typescript": "3.2.2"
   }
 }
