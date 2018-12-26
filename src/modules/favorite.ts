@@ -7,34 +7,28 @@ export default class Favorite extends ApiModule {
   get add() {
     return {
       friend: async (friendId: UserId): Promise<FavoriteResponse> => {
-        const result = await this.postReq('favorites', {type: 'friend', favoriteId: friendId})
-        return result.data
+        return await this.postReq('favorites', {type: 'friend', favoriteId: friendId})
       },
 
       world: async (worldId: WorldId): Promise<FavoriteResponse> => {
-        const result = await this.postReq('favorites', {type: 'world', favoriteId: worldId})
-        return result.data
+        return await this.postReq('favorites', {type: 'world', favoriteId: worldId})
       },
 
       avatar: async (avatarId: AvatarId): Promise<FavoriteResponse> => {
-        const result = await this.postReq('favorites', {type: 'avatar', favoriteId: avatarId})
-        return result.data
+        return await this.postReq('favorites', {type: 'avatar', favoriteId: avatarId})
       },
     }
   }
 
   async getInfo(favoriteId: FavoriteId): Promise<FavoriteResponse> {
-    const result = await this.getReq(`favorites/${favoriteId}`)
-    return result.data
+    return await this.getReq(`favorites/${favoriteId}`)
   }
 
   async list(type: TypeOptions = null): Promise<FavoriteResponse[]> {
-    const result = await this.getReq(`favorites`, {type: type})
-    return result.data
+    return await this.getReq(`favorites`, {type: type})
   }
 
   async delete(favoriteId: FavoriteId): Promise<StatusResponse> {
-    const result = await this.deleteReq(`favorites/${favoriteId}`)
-    return result.data
+    return await this.deleteReq(`favorites/${favoriteId}`)
   }
 }
