@@ -7,8 +7,7 @@ export default class Moderation extends ApiModule {
    * @deprecated
    */
   async send(userId: UserId): Promise<SendModerationResponse> {
-    const result = await this.postReq(`user/${userId}/moderations`)
-    return result.data
+    return await this.postReq(`user/${userId}/moderations`)
   }
 
   async block(userId: UserId): Promise<ModerationInfo> {
@@ -18,14 +17,12 @@ export default class Moderation extends ApiModule {
   }
 
   async unblock(userId: UserId) {
-    const result = await this.putReq('auth/user/unblocks', {blocked: userId})
-    return result.data
+    return await this.putReq('auth/user/unblocks', {blocked: userId})
     // return await this.sendPlayer(userId, 'unblock')
   }
 
   private async sendPlayer(userId: UserId, type: PlayerModerationType): Promise<ModerationInfo> {
-    const result = await this.postReq('auth/user/playermoderations', {type: type, moderated: userId})
-    return result.data
+    return await this.postReq('auth/user/playermoderations', {type: type, moderated: userId})
   }
 
   async mute(userId: UserId): Promise<ModerationInfo> {
@@ -37,23 +34,19 @@ export default class Moderation extends ApiModule {
   }
 
   async delete(userId: UserId, moderationId: ModerationId): Promise<StatusResponse> {
-    const result = await this.deleteReq(`user/${userId}/moderations/${moderationId}`)
-    return result.data
+    return await this.deleteReq(`user/${userId}/moderations/${moderationId}`)
   }
 
   async clear(userId: UserId): Promise<StatusResponse> {
-    const result = await this.deleteReq(`user/${userId}/moderations`)
-    return result.data
+    return await this.deleteReq(`user/${userId}/moderations`)
   }
 
   async getAgainstSelf(): Promise<ModerationInfo[]> {
-    const result = await this.getReq(`auth/user/playermoderated`)
-    return result.data
+    return await this.getReq(`auth/user/playermoderated`)
   }
 
   async getSentlist(): Promise<ModerationInfo[]> {
-    const result = await this.getReq(`auth/user/playermoderations`)
-    return result.data
+    return await this.getReq(`auth/user/playermoderations`)
   }
 
 

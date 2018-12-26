@@ -1,46 +1,39 @@
 import ApiModule from './api-module'
-import {InstanceId, StatusResponse, WorldId} from '../types/common'
+import {InstanceId, WorldId} from '../types/common'
 import {InstanceInfo, MetadataResponse, WorldDetail, WorldInfo, WorldSearchRequest} from '../types/world'
 
 
 export default class World extends ApiModule {
   async getById(worldId: WorldId): Promise<WorldDetail> {
-    const result = await this.getReq(`worlds/${worldId}`)
-    return result.data
+    return await this.getReq(`worlds/${worldId}`)
   }
 
   get search() {
     return {
       all: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
-        const result = await this.getReq('worlds', options)
-        return result.data
+        return await this.getReq('worlds', options)
       },
 
       active: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
-        const result = await this.getReq('worlds/active', options)
-        return result.data
+        return await this.getReq('worlds/active', options)
       },
 
       recent: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
-        const result = await this.getReq('worlds/recent', options)
-        return result.data
+        return await this.getReq('worlds/recent', options)
       },
 
       favorites: async (options: Partial<WorldSearchRequest> = {}): Promise<WorldInfo[]> => {
-        const result = await this.getReq('worlds/favorites', options)
-        return result.data
+        return await this.getReq('worlds/favorites', options)
       },
     }
   }
 
   async getMetadata(worldId: WorldId): Promise<MetadataResponse> {
-    const result = await this.getReq(`worlds/${worldId}/metadata`)
-    return result.data
+    return await this.getReq(`worlds/${worldId}/metadata`)
   }
 
   async getInstanceWithTags(worldId: WorldId, instanceId: InstanceId): Promise<InstanceInfo> {
-    const result = await this.getReq(`worlds/${worldId}/${instanceId}`)
-    return result.data
+    return await this.getReq(`worlds/${worldId}/${instanceId}`)
   }
 
 }
