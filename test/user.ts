@@ -1,7 +1,6 @@
 import VrcApi from '../src/vrc-api'
 import vrc from '../src/vrc'
 import {expect} from 'chai'
-import {FriendsResponse} from '../src/types/user'
 
 describe('User API', () => {
   let api: VrcApi
@@ -91,9 +90,4 @@ describe('User API', () => {
     })
     expect(result).to.be.lengthOf(1)
   })
-
-  // it('Search active', async () => {
-  //   const result = await api.user.search.active()
-  //   expect(result).to.be.lengthOf(1)
-  // })
 })
