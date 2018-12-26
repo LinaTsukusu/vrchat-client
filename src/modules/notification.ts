@@ -8,12 +8,11 @@ import {
 
 export default class Notification extends ApiModule {
   private async sendNotification(type: NotificationType, targetUser: UserId, message: string = '', details: object = {}): Promise<NotificationInfo> {
-    const result = await this.postReq(`user/${targetUser}/notification`,{
+    return await this.postReq(`user/${targetUser}/notification`,{
       type: type,
       message: message,
       details: JSON.stringify(details)
     })
-    return result.data
   }
 
   get send() {
@@ -23,9 +22,7 @@ export default class Notification extends ApiModule {
       },
 
       invite: async (targetUser: UserId, worldId: WorldId, message=''): Promise<NotificationInfo> => {
-        return await this.sendNotification('invite', targetUser, message, {
-          worldId: worldId
-        })
+        return await this.sendNotification('invite', targetUser, message, {worldId: worldId})
       },
 
       /**
@@ -33,9 +30,7 @@ export default class Notification extends ApiModule {
        */
       halp: async (targetUser: UserId, worldId: WorldId, message=''): Promise<NotificationInfo> => {
         // TODO わからん
-        return await this.sendNotification('halp', targetUser, message, {
-
-        })
+        return await this.sendNotification('halp', targetUser, message, {})
       },
 
       /**
@@ -72,17 +67,14 @@ export default class Notification extends ApiModule {
   }
 
   async markAsRead(notificationId: NotificationId): Promise<NotificationDetail> {
-    const result = await this.putReq(`auth/user/notifications/${notificationId}/see`)
-    return result.data
+    return await this.putReq(`auth/user/notifications/${notificationId}/see`)
   }
 
   async delete(notificationId: NotificationId): Promise<NotificationDetail> {
-    const result = await this.putReq(`auth/user/notifications/${notificationId}/hide`)
-    return result.data
+    return await this.putReq(`auth/user/notifications/${notificationId}/hide`)
   }
 
   async getAll(): Promise<NotificationDetail[]> {
-    const result = await this.getReq(`auth/user/notifications`)
-    return result.data
+    return await this.getReq(`auth/user/notifications`)
   }
 }

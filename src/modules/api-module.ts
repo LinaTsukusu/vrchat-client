@@ -13,17 +13,20 @@ export default class ApiModule {
   }
 
   protected async getReq(url: string, params: object = {}) {
-    return await this.vrc.api.get(url, {
+    const result = await this.vrc.api.get(url, {
       params: params,
     })
+    return result.data
   }
 
   protected async deleteReq(url: string) {
-    return await this.vrc.api.delete(url)
+    const result = await this.vrc.api.delete(url)
+    return result.data
   }
 
   private async request(method: ('post' | 'put'), url: string, body: object = null) {
-    return await this.vrc.api[method](url, body)
+    const result = await this.vrc.api[method](url, body)
+    return result.data
   }
 
   protected async postReq(url: string, body: object = null) {
