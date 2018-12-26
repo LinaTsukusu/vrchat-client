@@ -1,12 +1,13 @@
 {
   "name": "vrchat-client",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Unofficial VRChat API Client for Node.js",
   "main": "dist/main.js",
   "repository": "https://github.com/LinaTsukusu/vrchat-client.git",
   "author": "LinaTsukusu",
   "license": "MIT",
   "private": false,
+  "keywords": ["vrchat", "api"],
   "scripts": {
     "build": "node_modules/.bin/tsc",
     "start": "yarn build && node dist/main.js",
