@@ -7,14 +7,22 @@
   "author": "LinaTsukusu",
   "license": "MIT",
   "private": false,
-  "keywords": ["vrchat", "api"],
+  "keywords": [
+    "vrchat",
+    "api"
+  ],
   "scripts": {
     "build": "node_modules/.bin/tsc",
     "start": "yarn build && node dist/main.js",
     "test": "node_modules/.bin/mocha test/**/*.ts -r ts-node/register --timeout 60000",
     "prepublishOnly": "node_modules/.bin/tsc"
   },
-  "files": ["dist", "LICENSE", "package.json", "README.md"],
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "axios": "^0.18.0",
     "cookie": "^0.3.1"
@@ -24,7 +32,6 @@
     "@types/mocha": "^5.2.5",
     "@types/node": "10.12.12",
     "chai": "^4.2.0",
-    "cross-env": "^5.2.0",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
     "typescript": "3.2.2"
