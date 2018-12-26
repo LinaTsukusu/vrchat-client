@@ -7,8 +7,6 @@ import Moderation from './modules/moderation'
 import Notification from './modules/notification'
 import {UserId} from './types/common'
 
-const cookie = require('cookie')
-
 
 export default class VrcApi {
   private readonly url: string
@@ -52,14 +50,13 @@ export default class VrcApi {
       params: {apiKey: apiKey},
       auth: {username: username, password: password},
     })
-    const token = cookie.parse(userRes.headers['set-cookie'][1]).auth
     this._userId = userRes.data.id
     this.vrc = axios.create({
       baseURL: this.url,
       headers: {
         'Content-Type': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
-        'Cookie': `auth=${token}; apiKey=${apiKey}`,
+        'Cookie': userRes.headers['set-cookie'],
       },
       responseType: 'json',
     })
