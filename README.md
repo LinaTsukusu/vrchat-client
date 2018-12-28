@@ -2,7 +2,6 @@
 [![Build Status](https://travis-ci.org/LinaTsukusu/vrchat-client.svg?branch=master)](https://travis-ci.org/LinaTsukusu/vrchat-client)
 [![Maintainability](https://api.codeclimate.com/v1/badges/398324dfe83c38451044/maintainability)](https://codeclimate.com/github/LinaTsukusu/vrchat-client/maintainability)
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![npm](https://img.shields.io/npm/dt/vrchat-client.svg)](https://www.npmjs.com/package/vrchat-client)  
 > Unofficial VRChat API Client for Node.js
 
 ## Usage
@@ -19,7 +18,7 @@ import vrc from 'vrchat-client'
 const vrc = require('vrchat-client')
 
 // all methods return Promise
-const api = await vrc.login(username, password)
+let api = await vrc.login(username, password)
 ```
 
 ### User API
